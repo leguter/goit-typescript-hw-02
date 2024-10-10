@@ -1,0 +1,19 @@
+.container {
+    margin-bottom:auto;
+    position: absolute;
+    top:10px;
+    left: 40%;
+    padding-bottom: 15px;
+}
+.input {
+    width: 120px;
+    height: 30px;
+    margin-right: 15px;
+}
+.btnSubmit {
+    height: 40px;
+    width: 100px;
+    border: none;
+    align-items: center;
+    justify-content: center;
+}
