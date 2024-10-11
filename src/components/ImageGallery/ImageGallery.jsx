@@ -3,7 +3,7 @@ import css from './ImageGallery.module.css'
 const ImageGallery = ({ dataImgs, openModal,}) => {
   return (
     <ul className={css.list} >
-      {dataImgs.map((dataImg,) => {
+      {dataImgs.map((dataImg) => {
         return (
           <li key={dataImg.id} className={css.item}>
             <ImgCard

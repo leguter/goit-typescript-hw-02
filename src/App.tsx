@@ -8,17 +8,18 @@ import ErrorMessage from './components/ErrorMessage/ErrorMessage';
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn';
 import ImageModal from './components/ImageModal/ImageModal';
 import React from "react";
+import { IziToastSettings } from 'izitoast';
 import { useEffect, useState } from 'react';
 function App() {
   const [ImgData, setData] = useState([])
-  const [query, setQuery] = useState(null)
-  const [loader, setLoader] = useState(false)
-  const [err, setErr] = useState(false)
-  const [totalPages, setTotalPages] = useState(null)
-  const [page, setPage] = useState(1)
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [urlModalImg, setUrlModalImg] = useState('')
-   function openModal(value) {
+  const [query, setQuery] = useState<string | null>(null)
+  const [loader, setLoader] = useState<boolean>(false)
+  const [err, setErr] = useState<boolean>(false)
+  const [totalPages, setTotalPages] = useState<number | null>(null)
+  const [page, setPage] = useState<number>(1)
+  const [modalIsOpen, setIsOpen] = React.useState<boolean>(false);
+  const [urlModalImg, setUrlModalImg] = useState<string>('')
+   function openModal(value:string) {
      setIsOpen(true);
      setUrlModalImg(value);
    }
@@ -28,33 +29,33 @@ function App() {
     setIsOpen(false);
   }
  
-  const sendQuery = (searchValue) => {
+  const sendQuery= (searchValue: string) => {
  
     setQuery(searchValue);
   }
   const maxPage = Math.round(totalPages / (12 * page))
   useEffect(() => {
-    async function getImgs(word, page) {
+    async function getImgs(word:string, page:number) {
       if( word === null) return
       try {
-        setLoader(true)
+        setLoader(true);
         const response = await axios.get(
           `https://api.unsplash.com/search/photos?client_id=vKuo5q6BtAb4eyT7HMIcPesAbRlmfSav8y4iXt9ouF0&query=${word}&per_page=12&page=${page}`
         );
         if (response.data.results.length === 0) {
-          setLoader(false)
+          setLoader(false);
           iziToast.error("There is no matches to your request, try again");
-          setErr(true)
+          setErr(true);
           return;
         } else {
           setData((imgData) => [...imgData, ...response.data.results]);
-          setTotalPages(response.data.total)
+          setTotalPages(response.data.total);
         }
       } catch (error) {
         iziToast.error(error);
-        setErr(true)
+        setErr(true);
       } finally {
-        setLoader(false)
+        setLoader(false);
       }
     }
     getImgs(
