@@ -20,6 +20,7 @@ type Props = {
         small: string;
       };
     }
+    
   ];
   openModal: (value: string) => void;
 };
