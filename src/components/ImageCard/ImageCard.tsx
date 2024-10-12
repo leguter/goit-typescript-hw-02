@@ -1,10 +1,15 @@
-
-const ImgCard =  ({
-    smallImg,
+type ImgCardProps = {
+  smallImg: string;
+  description: string;
+  openModal: (value:string) => void;
+  regularImg: string;
+}
+const ImgCard = ({
+  smallImg,
   description,
   openModal,
-    regularImg
-}) => {
+  regularImg
+}: ImgCardProps) => {
     return (
       <div>
         <button onClick={()=>openModal(regularImg)}> 
