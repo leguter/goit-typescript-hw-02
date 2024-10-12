@@ -58,7 +58,7 @@ type ImgDataType = {
         );
         if (response.data.results.length === 0) {
           setLoader(false);
-          iziToast.error("There is no matches to your request, try again");
+          iziToast.error({ message: "There is no matches to your request, try again" });
           setErr(true);
           return;
         } else {

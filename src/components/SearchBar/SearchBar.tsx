@@ -1,7 +1,6 @@
-import { Formik, Form, Field } from "formik"
+import { Formik, Form, Field,FormikHelpers } from "formik"
 import iziToast from "izitoast";
 import css from './SearchBar.module.css'
-import { FormEvent } from "react";
 type   ImgData=  {
     id: number;
     description: string;
@@ -16,22 +15,19 @@ type SearchBarProps = {
   setPage: (value: number) => void;
 };
 type handleSubmitProps = {
-  // values: {
-  //   search: string;
-  // };
   search: string;
-  actions: {
-    resetForm: () => void;
-  };
 };
 const SearchBar = ({ sendQuery, setData, setPage }:SearchBarProps) => {
   const INITIAL_VALUES = {
     search: "",
   };
   
-  const handleSubmit: React.FC<handleSubmitProps> = (values, actions) => {
+  const handleSubmit = (
+    values: handleSubmitProps,
+    actions: FormikHelpers<handleSubmitProps>
+  ) => {
     if (values.search.trim() === "") {
-      iziToast.error("You need enter text for searching images");
+      iziToast.error({ message: "You need enter text for searching images" });
       return;
     }
     setData([]);
