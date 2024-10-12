@@ -11,12 +11,16 @@ import React from "react";
 import { IziToastSettings } from 'izitoast';
 import { useEffect, useState } from 'react';
 function App() {
-type ImgDataType = {
+  type ImgDataType = {
+   
   id: number;
-  small: string;
   description: string;
-  regular: string;
-};
+  urls: {
+   regular:string,
+   small:  string,
+   
+}
+  };
   const [ImgData, setData] = useState<ImgDataType[]>([]);
   const [query, setQuery] = useState<string | null>(null)
   const [loader, setLoader] = useState<boolean>(false)

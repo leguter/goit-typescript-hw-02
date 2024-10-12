@@ -11,28 +11,25 @@ import css from './ImageGallery.module.css'
 //   setIsOpen: boolean;
 // };
 type Props = {
-  dataImgs: {
-    id: number;
-    small: string;
-    description: string;
-    regular: string;
-  };
-  openModal: {
-    setUrlModalImg: string;
-    setIsOpen: boolean;
-  };
+  dataImgs: [
+    {
+      id: number;
+      description: string;
+      urls: {
+        regular: string;
+        small: string;
+      };
+    }
+  ];
+  openModal: (value: string) => void;
 };
 type dataImgProps = {
-  [
-  dataImg: {
-    id: number;
-    description: string;
-    urls: string;
-  };
   id: number;
   description: string;
-  urls: any;
-]
+  urls: {
+    regular: string;
+    small: string;
+  };
 };
 const ImageGallery = ({ dataImgs, openModal}:Props) => {
   return (

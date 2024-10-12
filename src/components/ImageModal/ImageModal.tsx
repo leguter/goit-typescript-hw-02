@@ -14,8 +14,12 @@ const customStyles = {
 
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement("#root");
-
-const ImageModal = ({   closeModal, modalIsOpen,imgModal}) => {
+type ImageModalProps = {
+  closeModal: (value: boolean) => void;
+  modalIsOpen: boolean;
+  imgModal: string;
+};
+const ImageModal = ({   closeModal, modalIsOpen,imgModal}:ImageModalProps) => {
   return (
     <div>
       <Modal
