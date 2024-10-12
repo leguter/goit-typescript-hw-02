@@ -11,17 +11,16 @@ import css from './ImageGallery.module.css'
 //   setIsOpen: boolean;
 // };
 type Props = {
-  dataImgs: [
-    {
-      id: number;
-      description: string;
-      urls: {
-        regular: string;
-        small: string;
-      };
-    }
-    
-  ];
+  dataImgs:
+  {
+    id: number;
+    description: string;
+    urls: {
+      regular: string;
+      small: string;
+    };
+  }[];
+  
   openModal: (value: string) => void;
 };
 type dataImgProps = {

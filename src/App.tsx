@@ -11,7 +11,7 @@ import React from "react";
 import { IziToastSettings } from 'izitoast';
 import { useEffect, useState } from 'react';
 function App() {
-  type ImgDataType = {
+type ImgDataType = {
    
   id: number;
   description: string;
@@ -89,9 +89,8 @@ function App() {
       {query !== null && (
         <ImageGallery
           dataImgs={ImgData}
-          fncSubmit={sendQuery}
           openModal={openModal}
-          setUrlModalImg={setUrlModalImg}
+       
         />
       )}
       {query !== null && (
