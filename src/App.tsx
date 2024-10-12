@@ -11,7 +11,13 @@ import React from "react";
 import { IziToastSettings } from 'izitoast';
 import { useEffect, useState } from 'react';
 function App() {
-  const [ImgData, setData] = useState([])
+type ImgDataType = {
+  id: number;
+  small: string;
+  description: string;
+  regular: string;
+};
+  const [ImgData, setData] = useState<ImgDataType[]>([]);
   const [query, setQuery] = useState<string | null>(null)
   const [loader, setLoader] = useState<boolean>(false)
   const [err, setErr] = useState<boolean>(false)
@@ -33,7 +39,11 @@ function App() {
  
     setQuery(searchValue);
   }
-  const maxPage = Math.round(totalPages / (12 * page))
+  let maxPage: number ;
+  if (totalPages !== null) {
+  maxPage = Math.round(totalPages / (12 * page));
+  } 
+ 
   useEffect(() => {
     async function getImgs(word:string, page:number) {
       if( word === null) return
@@ -52,14 +62,14 @@ function App() {
           setTotalPages(response.data.total);
         }
       } catch (error) {
-        iziToast.error(error);
+        iziToast.error(error!);
         setErr(true);
       } finally {
         setLoader(false);
       }
     }
     getImgs(
-      query, page
+      query!, page
      );
   }, [query,page])
   const loadMore = () => {
@@ -87,7 +97,7 @@ function App() {
           closeModal={closeModal}
         />
       )}
-      {maxPage > page && <LoadMoreBtn loadMore={loadMore} />}
+      {maxPage! > page && <LoadMoreBtn loadMore={loadMore} />}
     </>
   );
 }
