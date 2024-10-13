@@ -19,7 +19,24 @@ type ImgDataType = {
    regular:string,
    small:  string,
    
-}
+  }
+ 
+  };
+  type responsType = {
+    // total: number;
+    // total_pages: number;
+    // response: {
+    //   data: {
+    //     total: number;
+    //     total_pages: number;
+    //     results: ImgDataType;
+    //   };
+    // };
+    data: {
+      total: number;
+      total_pages: number;
+      results: ImgDataType[];
+    };
   };
   const [ImgData, setData] = useState<ImgDataType[]>([]);
   const [query, setQuery] = useState<string | null>(null)
@@ -53,9 +70,10 @@ type ImgDataType = {
       if( word === null) return
       try {
         setLoader(true);
-        const response = await axios.get(
+        const response:responsType = await axios.get(
           `https://api.unsplash.com/search/photos?client_id=vKuo5q6BtAb4eyT7HMIcPesAbRlmfSav8y4iXt9ouF0&query=${word}&per_page=12&page=${page}`
         );
+        console.log(response)
         if (response.data.results.length === 0) {
           setLoader(false);
           iziToast.error({ message: "There is no matches to your request, try again" });
