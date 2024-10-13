@@ -73,7 +73,6 @@ type ImgDataType = {
         const response:responsType = await axios.get(
           `https://api.unsplash.com/search/photos?client_id=vKuo5q6BtAb4eyT7HMIcPesAbRlmfSav8y4iXt9ouF0&query=${word}&per_page=12&page=${page}`
         );
-        console.log(response)
         if (response.data.results.length === 0) {
           setLoader(false);
           iziToast.error({ message: "There is no matches to your request, try again" });
